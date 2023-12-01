@@ -16,6 +16,14 @@
             font-family: "Comic Sans MS", "Comic Sans", cursive;
             
         }
+        #gif-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
         .centered-flex {
             display: flex;
             justify-content: center;
@@ -373,7 +381,9 @@
 <button id="settins-button"></button>
 <body>
     <div id="slot-machine-container">
-        
+        <div id="gif-container" style="display: none;">
+            <img id="gif-image" src="play_method.gif" style="width: 100%; height: 100%;">
+        </div>
         <div class="slot-play-frame"></div>
         <button id="enter-button"></button>
         <div id="score-board-container">
@@ -495,6 +505,7 @@
                 var randomSound = sounds[Math.floor(Math.random() * sounds.length)];
                 document.getElementById(randomSound).play();
             }, 1000);
+            score += 10 * scoreMultiplier; // 2つの画像が一致した場合にスコアを加算
             } else if (index1 == index2 && index2 == index3) {
                 setTimeout(function() {
                     var sounds = ['sound-8', 'sound-9', 'sound-10', 'sound-11'];
@@ -544,6 +555,11 @@
         });
         document.querySelector('#settins-button').addEventListener('click', function() {
             document.getElementById('sound-21').play();
+            document.getElementById('gif-container').style.display = 'block';
+        });
+        document.querySelector('#gif-image').addEventListener('click', function() {
+            document.getElementById('sound-22').play();
+            document.getElementById('gif-container').style.display = 'none';
         });
 
     </script>
@@ -569,6 +585,7 @@
     <audio id="sound-19" src="「準備はいいですか？」.mp3"></audio>
     <audio id="sound-20" src="「準備はいいかな？」.mp3"></audio>
     <audio id="sound-21" src="決定ボタンを押す29.mp3"></audio>
+    <audio id="sound-22" src="決定ボタンを押す42 (1).mp3"></audio>
     <audio id="bgm-1" src="night-pop-1.wav" loop></audio>
     <audio id="bgm-2" src="night-pop-2.wav" loop></audio>
     <audio id="bgm-3" src="night-pop-3.wav" loop></audio>
